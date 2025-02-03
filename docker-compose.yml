@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  db:
+    container_name: db-prueba-nest
+    image: mysql:8.0
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3308:3306"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app-prueba-nest
+    restart: always
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    env_file:
+      - .env
+    command: sh -c "/usr/local/bin/wait-for-it.sh db:3306 --timeout=90 --strict -- npm run migration:run && npm run start:dev"
+
+  phpmyadmin:
+    depends_on:
+      - db
+    container_name: phpmyadmin-prueba-nest
+    image: phpmyadmin:latest
+    ports:
+      - "8081:80"
+    environment:
+      - PMA_HOST=${DB_HOST}
+      - PMA_PORT=${DB_PORT}
