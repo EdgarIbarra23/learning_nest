@@ -12,8 +12,6 @@ import { Roles } from 'src/common/decorators/roles.decorator';
 export class RolesController {
   constructor(private readonly rolesService: RolesService) { }
 
-  @Roles(['admin'])
-  @UseGuards(JwtAuthenticatedGuard, RolesPermissionGuard)
   @UsePipes(new JoiValidationPipe(roleValidation))
   @Post('save')
   create(@Body() createRoleDto: CreateRoleDto) {
