@@ -5,8 +5,8 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
+<p align="center">Un framework progresivo de <a href="http://nodejs.org" target="_blank">Node.js</a> para construir aplicaciones del lado del servidor eficientes y escalables.</p>
+<p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
@@ -22,78 +22,116 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+# 📌 Acerca del Proyecto
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Este proyecto fue diseñado para mi práctica y aprendizaje en el desarrollo con NestJS. Incluye dos tablas principales: **roles** y **usuarios**, y abarca diversas prácticas esenciales en el desarrollo backend.
 
-## Project setup
+### 🔹 Características principales
+- ✅ **Estructuración del Proyecto:** Organización de carpetas y archivos.
+- ✅ **Manejo de Respuestas HTTP:** Estructura adecuada de respuestas y manejo de errores.
+- ✅ **Migraciones:**
+  - Creación de migraciones.
+  - Definición de relaciones entre tablas.
+  - Ejecución de migraciones.
+  - Modificación o adición de campos en migraciones ya existentes (como si estuviera en producción).
+- ✅ **CRUD Completo:**
+  - Servicio de Creación (Create).
+  - Servicio de Lectura (Read) con relaciones.
+  - Servicio de Actualización (Update).
+  - Servicio de Eliminación (Delete) con validación de dependencias.
+- ✅ **Autenticación y Autorización:**
+  - Servicio de Inicio de Sesión (Login).
+  - Servicio para obtener la información del usuario autenticado.
+  - Servicio de Cierre de Sesión (Logout).
+  - Validación de autenticación para proteger endpoints.
+  - Asignación y gestión de Roles de usuario.
+  - Autorización de peticiones según roles (restricción de acciones según permisos asignados).
+- ✅ **Notificaciones y Comunicación:**
+  - Envío de Emails.
+  - Envío de Notificaciones.
 
-```bash
-$ npm install
-```
+#
 
-## Compile and run the project
+### 🚀 Instalación y Ejecución
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 1️⃣ Clonar el Repositorio
 
 ```bash
-$ npm install -g mau
-$ mau deploy
+  git clone https://github.com/EdgarIbarra23/learning_nest.git
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 2️⃣ Configuración Inicial
 
-## Resources
+#### 🔹 Para usuarios SIN Docker
 
-Check out a few resources that may come in handy when working with NestJS:
+1. Instalar dependencias
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+    npm install
+```
 
-## Support
+2. Copiar el archivo de entorno
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+    cp .env.example .env
+```
 
-## Stay in touch
+3. Ejecutar las migraciones
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+    npm run migration:run 
+```
 
-## License
+4. Iniciar el servidor en modo desarrollo
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+```bash
+    npm run start:dev
+```
+
+#
+
+#### 🔹 Para usuarios CON Docker
+
+1. Copiar el archivo de entorno
+
+```bash
+    cp .env.example .env
+```
+
+2. Configurar las variables de entorno en `.env` (Opcionalmente, puedes modificar `DB_PASSWORD` y `DB_NAME`)
+
+```bash
+    DB_HOST=db
+    DB_PORT=3306
+    DB_PASSWORD=password123
+    DB_NAME=nombre_de_base_de_dato
+```
+
+3. Modificar el archivo `db/init.sql`, reemplazando `nombre_de_base_de_dato` con el nombre real de la base de datos
+
+```bash
+    CREATE DATABASE IF NOT EXISTS nombre_de_base_de_dato;
+    USE nombre_de_base_de_dato;
+```
+
+4. Construir y levantar los contenedores con Docker Compose
+
+```bash
+    docker-compose up --build
+```
+
+5. Acceder a la Base de Datos con PhpMyAdmin en la siguiente URL
+
+```bash
+    http://localhost:8081/
+```
+
+#
+
+### 🌐 Acceso a la API
+
+Después de completar los pasos de instalación, la API estará disponible en:
+
+```bash
+  http://localhost:8000/api
+```
